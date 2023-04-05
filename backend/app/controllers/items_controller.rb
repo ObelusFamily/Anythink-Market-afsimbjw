@@ -62,8 +62,7 @@ class ItemsController < ApplicationController
         }
       )
       @item.image = response.dig("data", 0, "url")
-    end
-    if @item.save
+      elsif @item.save
       sendEvent("item_created", { item: item_params })
       render :show
     else
