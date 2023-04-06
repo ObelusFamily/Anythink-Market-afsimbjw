@@ -1,5 +1,5 @@
 require "ruby/openai"
 
-Ruby::OpenAI.configure do |config|
+OpenAI.configure do |config|
     config.access_token = ENV['OPENAI_API_KEY']
 end

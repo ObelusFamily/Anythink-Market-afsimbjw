@@ -62,10 +62,15 @@ class ItemsController < ApplicationController
         }
       )
       @item.image = response.dig("data", 0, "url")
+    end
+    if @item.save
+      sendEvent("item_created", { item: item_params })
+      render :show
     else
       render json: { errors: @item.errors }, status: :unprocessable_entity
     end
   end
+  
 
   def show
     @item = Item.find_by!(slug: params[:slug])
